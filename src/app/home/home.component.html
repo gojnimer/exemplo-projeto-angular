@@ -1,0 +1,55 @@
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="m-3 p-1 cardInfo">
+      <span>Propostas Mês:</span>
+      <div class="dropdown-divider col-4"></div>
+      <h5 class="text-center">547 Propostas</h5>
+    </div>
+    <div class="m-3 p-1 cardInfo">
+      <span>Aprovações Mês:</span>
+      <div class="dropdown-divider col-4"></div>
+      <circle-progress class="circle-progress m-auto"
+      [percent]="76"
+      [radius]="100"
+      [outerStrokeWidth]="10"
+      [showInnerStroke]="false"
+      [outerStrokeColor]="'#3acbc7'"
+      [titleColor]="'#3acbc7'"
+      [titleFontSize]="50"
+      [animation]="true"
+      [animationDuration]="300"
+      [responsive]="true"
+      [showSubtitle]="false"
+    ></circle-progress>
+
+    </div>
+    <div class="m-3 p-1 cardInfo">
+
+      <span>Reprovações Mês:</span>
+      <div class="dropdown-divider col-4"></div>
+      <circle-progress class="circle-progress m-auto"
+      [percent]="16"
+      [radius]="100"
+      [outerStrokeWidth]="10"
+      [showInnerStroke]="false"
+      [outerStrokeColor]="'#3acbc7'"
+      [titleColor]="'#3acbc7'"
+      [titleFontSize]="50"
+      [animation]="true"
+      [animationDuration]="300"
+      [responsive]="true"
+      [showSubtitle]="false"
+    ></circle-progress>
+    </div>
+    <div class="m-3 p-1 cardInfo">
+      <span>Propostas com falhas:</span>
+      <div class="dropdown-divider "></div>
+      <h5 class="text-center">7 propostas</h5>
+    </div>
+  </div>
+  <div class="max-w col-12 m-auto p-3">
+    <canvas class="cardChart" #meuCanvas></canvas>
+  </div>
+</div>
+

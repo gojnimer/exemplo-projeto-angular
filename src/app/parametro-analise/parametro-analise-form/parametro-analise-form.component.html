@@ -1,0 +1,86 @@
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ action == 'edit' ? "Editar" : action == 'new' ? "Incluir" : "Consulta" }} Parâmetros de Análise</h4>
+  </div>
+
+  
+    <div class="row mt-5">
+      
+      <div class="col-3">
+        <label for="tProposta" class="ptitle">Total de Propostas Permitidas:</label>
+        <input type="text" id="tProposta" formControlName="totalProposta" class="inputblack form-control form-control-lg" >
+      </div>
+
+      <div class="col-3">
+        <label for="idaMinima" class="ptitle">Idade Mínima Titular:</label>
+        <input type="text" id="idadeMinima" formControlName="idadeMinima" class="inputblack form-control form-control-lg" >
+      </div>
+      <div class="col-3">
+        <label for="perTotal" class="ptitle">Periodo Total Análises (dias):</label>
+        <input type="text" id="perTotal" formControlName="periodoTotal" class="inputblack form-control form-control-lg" >
+      </div>
+      <div class="col-3">
+        <label for="valAnalise" class="ptitle">Validade Análise Pendente (dias):</label>
+        <input type="text" id="valAnalise" formControlName="validadeAnalise" class="inputblack form-control form-control-lg" >
+      </div>
+    
+  </div>
+  <div class="row mt-5">
+      
+    <div class="col-3">
+      <label for="rendaM" class="ptitle">Renda Mínima:</label>
+      <input type="text" id="rendaM" formControlName="rendaMinima" class="inputblack form-control form-control-lg" >
+    </div>
+
+    <div class="col-3">
+      <label for="idaMinimaA" class="ptitle">Idade Mínima Titular:</label>
+      <input type="text" id="idadeMinimaA" formControlName="idadeMinimaAdicional" class="inputblack form-control form-control-lg" >
+    </div>
+    
+  
+  </div>
+
+
+  <div *ngIf="action == 'show'">
+    <hr class="mt-5 mb-5">
+    <div class="row">
+      <div class="col-7">
+        <table class="table table-bordered" >
+       
+          <tr>
+         
+            <th style="width: 70%">Usuário Responsável</th>
+            <th style="width: 20%">Data</th>
+          </tr>
+          <tr >
+            <td>Guilherme Nimer</td>
+            <td>20/12/2016 08:54:34</td>
+            
+          </tr>
+    
+        
+        
+      </table>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+ 
+
+
+</div>
+
+<div class="hrBottom  text-right mb-3">
+  <div class="line"></div>
+  <div class="pt-3"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="..">Voltar</button>
+  <button type="submit" class="btn btn-bg mr-5 col-1" *ngIf="action != 'show'" >Salvar</button>
+</div> 
+</form>
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+<!-- Modal -->
+<div class="modal bd-example-modal-lg fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalhe Processo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+
+        <form [formGroup]="formDetalheProcesso" class="pb-5">
+
+        
+          <div class="row">
+            <div class="col-4">
+              <label class="form-check-label tp-person">Processo:</label>
+              <input formControlName="processo" type="text" class="form-control" readonly="true">
+            </div>
+            <div class="col-4">
+              <label class="form-check-label tp-person">Motivo Recusa:</label>
+              <input formControlName="motivoRecusa" type="text" class="form-control" readonly="true">
+            </div>
+            <div class="col-4">
+              <label class="form-check-label tp-person">Resultado Analise:</label>
+              <input formControlName="resultadoAnalise" type="text" class="form-control" readonly="true">
+            </div>
+          </div>
+        
+          <div class="row mt-3">
+            <div class="col-4">
+              <label class="form-check-label tp-person">Fluxo Interrompido:</label>
+              <input formControlName="fluxoInterrompido" type="text" class="form-control" readonly="true">
+            </div>
+            <div class="col-4">
+              <label class="form-check-label tp-person">Mensagem da Analise:</label>
+              <input formControlName="mensagemAnalise" type="text" class="form-control" readonly="true">
+            </div>
+          </div>
+
+        </form>
+        <div class="pb-5">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col-3">Código Regra</th>
+                <th scope="col-3">Resultado</th>
+                <th scope="col-3">Contingência</th>
+                <th scope="col-3">Motivo Recusa</th>
+                <th scope="col-3">Interrupção</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let a of dadosProcesso | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosProcesso.lenght}">
+                <td>{{a.codigo}}</td>
+                <td>{{a.resultado}}</td>
+                <td>{{a.contingencia}}</td>
+                <td>{{a.motivoRecusa}}</td>
+                <td>{{a.interrupcao}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

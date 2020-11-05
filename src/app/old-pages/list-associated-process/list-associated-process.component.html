@@ -1,0 +1,76 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine  d-inline-flex">
+    <img src="../../assets/back.svg" class="back" routerLink="/listModelReview">
+    <h4 class="pt-2 ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+    <button type="button" style="margin-left: 68% !important;" class="ml-5 btn float-right bgBtn" routerLink="/inclusionRuleFederalRecipe" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <form [formGroup]="associatedProcessForm" class="m-1 mb-3 mt-3" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col">
+            <label >Modelo:</label>
+            <input formControlName = "idModeloAnalise" type="text" class="form-control" style="width: 23%" value="2 - Teste" readonly="true">
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label >Descrição Processo:</label>
+        <select formControlName="dsProcesso" class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label>Processo:</label>
+        <select formControlName = "idProcesso" class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label>Ordem Execução:</label>
+        <select formControlName="ordemProcesso" class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col p-25">
+        <button type="submit" class="btn bgBtn w-35 mt-30">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Descrição</th>
+          <th scope="col">Processo</th>
+          <th scope="col">Ordem Execução</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosProcessos | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosProcessos.lenght}">
+          <td>{{a.dsProcesso}}</td>
+          <td>{{a.idProcesso}}</td>
+          <td>{{a.ordem}}</td>
+          <td>{{a.lastUpdateDate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+          <td>{{a.lastUpdateUser}}</td>
+          <td class="d-flex d-inline-flex w-100">
+              <img class="w-10" src="../../assets/link.svg" tooltip="Associar Regra" routerLink="/listAnalysisModelRules">
+              <img class="w-10" src="../../assets/object-group-solid.svg" tooltip="Associar Contigência" routerLink="/listContingency">
+              <img class="w-10" src="../../assets/pencil-alt-solid.svg">
+              <img class="w-10" src="../../assets/times-solid.svg">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>

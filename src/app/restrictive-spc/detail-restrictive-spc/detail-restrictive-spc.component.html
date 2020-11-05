@@ -1,0 +1,69 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+  </div>
+</div>
+
+<form class="m-1 mb-3 mt-3">
+
+  <div class="m-3">
+
+    <div class="row">
+
+      <div class="col-3">
+        <label class="form-check-label tp-person">Nome Regra:</label>
+        <input type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Qt. Dias Ocorrência:</label>
+        <input type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Tipo Restrição:</label>
+        <input type="text" class="form-control" readonly="true">
+      </div>
+    </div>
+
+  </div>
+  <div class="m-3">
+
+    <div class="row">
+        
+        <div class="col-3">
+          <label class="form-check-label tp-person">Valor Restrição Inicial:</label>
+          <input type="text" class="form-control" readonly="true">
+        </div>
+        <div class="col-3">
+          <label class="form-check-label tp-person">Valor Restrição Final:</label>
+          <input type="text" class="form-control" readonly="true">
+        </div>
+  
+    </div>
+
+  </div>
+</form>
+
+<div class="p-20 pt-3">
+    <table class="table table-bordered" style="width: 60%;">
+        <thead>
+        <tr>
+            <th scope="col-2" style="width: 75%;">Usuário Responsável</th>
+            <th scope="col-3" style="width: 25%;">Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let a of dadosUsuario | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosUsuario.lenght}">
+            <td>{{a.usuarioresponsavel}}</td>
+            <td>{{a.data}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="dropdown-divider"></div>
+
+<div class="hrBottom p-3 text-right">
+  <div class="line"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/listRestrictiveSPC">Voltar</button>
+  <button type="button" class="btn btn-bg mr-5 col-1">Salvar</button>
+</div>

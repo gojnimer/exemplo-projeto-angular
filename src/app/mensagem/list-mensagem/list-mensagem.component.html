@@ -1,0 +1,107 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" routerLink="new" >+ Novo</button>
+  </div>
+
+
+  <form [formGroup]="searchForm" (ngSubmit)="search()" class="m-1  mt-5">
+    <div class="row">
+      <div class="col-2">
+        <label class="pinput" for="codM">Código da Regra:</label>
+        <input type="number" id="codM" formControlName="codMsg"  class="inputblack  form-control">
+      </div>
+      <div class="col-2">
+        <label class="pinput" for="codTM">Código Tipo da Mensagem:</label>
+        <select class="form-control inputblack"  formControlName="codTipoMsg" id="codTM"  >
+          <option value=""  selected>Todos</option>
+          <option value="1 - ANALISE"  >1 - Análise</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <label class="pinput" for="codS">Status:</label>
+        <select class="form-control inputblack"  formControlName="codStatus" id="codS"  >
+          <option value=""  selected>Todos</option>
+          <option value="ATIVO"  >Ativo</option>
+          <option value="INATIVO"  >Inativo</option>
+        </select>
+      </div>
+      <div class="col-2 p-25">
+        <button type="submit" class="btn  bgBtn mt-30">Pesquisar</button>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </form>
+
+
+
+
+
+ 
+  <div >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 5%;" >Código</th>
+          <th scope="col" style="width: 35%;">Descrição Mensagem</th>
+          <th scope="col" style="width: 10%;">Tipo da Mensagem</th>
+          <th scope="col" style="width: 10%;">Status</th>
+          <th scope="col" style="width: 20%;">Data Ultima Ação</th>
+          <th scope="col" style="width: 10%;">Usuário Responsável</th>
+          <th scope="col" style="width: 5%;">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of sourceMsg | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: sourceMsg.length}; let i = index ">
+          <td>{{a.codigo}}</td>
+          <td><a [routerLink]="['show']" [queryParams]="{id: a.codigo}">{{a.descMsg}}</a></td>
+          <td>{{a.tipoMsg}}</td>
+          <td>{{a.status}}</td>
+          <td>{{a.dataUltimaAcao}}</td>
+          <td>{{a.usuarioResponsavel}}</td>
+          <td >
+              <a  [routerLink]="['edit']" [queryParams]="{id: a.codigo}"><img class=" hoverIMG" style="width: 32px; height: 32px;"  src="../../assets/pencil-alt-solid.svg"></a>
+              <a  data-toggle="modal" data-target="#deleteModal" (click)="excMsg = [a.descMsg,i]"  ><img class="hoverIMG" style="width: 32px; height: 32px;" src="../../assets/times-solid.svg"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="sourceMsg.length == 0" class="alert alert-info" role="alert">
+      Não existem itens para mostrar nesta exibição.
+     </div>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+
+</div>
+
+<!-- Modal DELETE-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header"     style="border-bottom: 1px solid #0abab5 !important;">
+        <h5 class="modal-title" id="exampleModalLongTitle"><h4 class=" pt-2 ml-4 text-secondary text-center">Exclusão Mensagem</h4></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-5">
+        <h5 style="color:black; font-weight:400;">Você tem certeza que deseja excluir a Mensagem: <br><b>{{excMsg[0]}}</b>?</h5>
+      </div>
+      <div class="modal-footer" style="border-top:none !important;">
+        
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-outline-info">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-light" (click)="deletarItem(excMsg[1])">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ 

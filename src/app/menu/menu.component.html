@@ -1,0 +1,100 @@
+<nav class="navbar navbar-dark bg-menu navbar-expand-lg p-0">
+  <img class="m-2 img-logo" src="../../assets/logo-sembg.png">
+  <a class="navbar-brand mr-5" routerLink="/home" routerLinkActive="active">Plataforma de Crédito |</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cadastros
+        </a>
+        <div class="dropdown-menu p-2 mx-width" aria-labelledby="navbarDropdown">
+        <div class="row">
+
+        <div class="col-md-5 m-1 text-left">
+          <a class="dropdown-item disabled" routerLink="/home" disabled>Parâmetro Geral Análise</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item disabled" routerLink="/home">Rating Client</a>
+          <a class="dropdown-item" routerLink="/ReceitaFederal" routerLinkActive="active">Receita Federal</a>
+          <a class="dropdown-item" routerLink="/RestrictiveSPC">Restritivo SPC</a>
+          <a class="dropdown-item " routerLink="/ParametroAnalise">Parametro Análise</a>
+          <a class="dropdown-item" routerLink="/RestrictiveSerasa">Restritivo Serasa</a>
+          <a class="dropdown-item" routerLink="/ScoreSPC">Score SPC</a>
+          <a class="dropdown-item disabled" routerLink="/home">Score Serasa</a>
+          <a class="dropdown-item disabled" routerLink="/home">Score combinado</a>
+        </div>
+
+        <div class="col-md-3 m-1 text-left">
+          <a class="dropdown-item disabled" routerLink="/home" disabled>Pré Aprovado</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item disabled" routerLink="/home" disabled>Análise Pré-Aprovado</a>
+          <a class="dropdown-item disabled" routerLink="/home" disabled>Cliente Pré-Aprovado</a>
+        </div>
+
+       <div class="col-md-3 m-1 text-left">
+          <a class="dropdown-item disabled" routerLink="">Modelos para análise</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/Modelos">Modelo</a>
+          <a class="dropdown-item " routerLink="/Mensagens">Mensagens</a>
+          <a class="dropdown-item " routerLink="/MotivoRecusa">Motivos de Recusa</a>
+          <a class="dropdown-item" href="/listContingency">Situação Contingência</a>
+        </div>
+
+        </div>
+
+        </div>
+      </li>
+
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Consulta
+        </a>
+        <div class="dropdown-menu p-2 mx-width" aria-labelledby="navbarDropdown">
+          <div class="row">
+
+            <div class="col-md-5 m-1 text-left">
+              <a class="dropdown-item" routerLink="/listProposalDetail">Resultado Análise de Crédito</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Validação
+        </a>
+        <div class="dropdown-menu p-2 mx-width" aria-labelledby="navbarDropdown">
+          <div class="row">
+
+            <div class="col-md-5 m-1 text-left">
+              <a class="dropdown-item disabled" routerLink="/home">Consulta Requisição</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Simulação
+        </a>
+        <div class="dropdown-menu p-2 mx-width" aria-labelledby="navbarDropdown">
+          <div class="row">
+
+            <div class="col-md-5 m-1 text-left">
+              <a class="dropdown-item" [routerLink]="['Simulation','new']">Análise de Crédito</a>
+              <a class="dropdown-item" [routerLink]="['Simulation','Result']">Resultado Simulação</a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+  <p class="m-1"> Bom dia ! <br/> Fulano Silva</p>
+    <a class="navbar-brand circle m-1 disabled">
+       FS
+    </a>
+</nav>

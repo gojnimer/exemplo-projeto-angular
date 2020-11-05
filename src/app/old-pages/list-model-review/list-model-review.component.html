@@ -1,0 +1,57 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" routerLink="/inclusionRuleFederalRecipe" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <form [formGroup]="modelForm" (ngSubmit)="submit()" class="m-1 mb-3 mt-3">
+    <div class="row">
+      <div class="col">
+        <label >Código do Modelo</label>
+        <input type="number" formControlName="codRegra" class="form-control">
+      </div>
+      <div class="col">
+        <label>Status:</label>
+        <select class="browser-default custom-select" formControlName="descricaoModelo">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="col p-25">
+        <button type="submit" class="btn bgBtn w-35 mt-30">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Código Modelo</th>
+          <th scope="col" style="width: 43%;">Descrição</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosModelo | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosModelo.lenght}">
+          <td>{{a.idModelo}}</td>
+          <td>{{a.description}}</td>
+          <td>{{a.lastUpdate | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+          <td>{{a.usuario}}</td>
+          <td class="d-flex d-inline-flex w-100">
+              <img class="w-10" src="../../assets/launch-24px.svg" routerLink="/listAssociatedProcess">
+              <img class="w-10" src="../../assets/pencil-alt-solid.svg">
+              <img class="w-10" src="../../assets/times-solid.svg">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>

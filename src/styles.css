@@ -1,0 +1,57 @@
+  body, html {
+    background-color: #f7f7f7!important;
+    color: #0abab5!important;
+    font-size: small;
+    display: grid;
+  }
+
+
+  /* Route Animation Pattern */
+  .route-container {
+    position:relative;
+  }
+  .route-container>* {
+    display:block;
+  }
+  /* /Route Animation Pattern */
+
+
+  /* Table CSS - Standard */
+  .my-pagination /deep/ .ngx-pagination .current {
+    background: #fff !important;
+    color:  #0abab5;
+    margin: 0;
+  }
+
+  .table {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    color: #595858;
+
+  }
+
+  .table td {
+    text-align: center;   
+  }
+
+  .table th {
+    text-align: center;   
+    background: #70d6d3!important;
+    color: #fff;
+  }
+
+  .table td img {
+    max-width: 25px;
+    max-height: 25px;
+    border: solid 1px #f4f3f3;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+  }
+
+  /* /Table CSS - Standard */

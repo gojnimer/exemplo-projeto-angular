@@ -1,0 +1,139 @@
+
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+  <div class="p-3">
+    <div class="p-1 titleLine justify-content-between d-inline-flex">
+      <h4 class=" pt-2 ml-4 text-secondary text-center">{{ action == 'edit' ? "Editar" : action == 'new' ? "Incluir" : "Consulta"}} Restritivo SPC</h4>
+    </div>
+  
+  
+      <div class="row mt-5">
+        
+          <div class="col-6">
+            <label for="NomeRegra" class="ptitle">Nome Regra:</label>
+            <input type="text" id="NomeRegra" formControlName="nomeRegra" class="inputblack form-control " >
+          </div>
+          
+         
+          <div class="col-3">
+            <label class="ptitle">Qtd. Dias Ocorrência:</label>
+            <input type="text"  formControlName="qtdDiasOcorrencia" class="inputblack form-control " >
+          </div>
+          <div class="col-3">
+            
+          </div>
+        
+      </div>
+      <div class="row mt-5">
+        
+        <div class="col-3">
+          <label  class="ptitle">Valor Restrição Inicial:</label>
+          <input type="text"  formControlName="valorRestricaoInicial" class="inputblack form-control " >
+        </div>
+        <div class="col-3">
+          <label  class="ptitle">Valor Restrição Final:</label>
+          <input type="text"  formControlName="valorRestricaoFinal" class="inputblack form-control " >
+        </div> 
+         
+          
+          
+      </div>
+     
+      
+      
+   
+  
+      <div class="row mt-5" *ngIf="action != 'show'">
+          <div class="col-3 pr-0">
+            <label for="tipoRes" class="ptitle">Tipo de Restrição</label>
+            <div class="row">
+              <div class="col-8 ">
+                <input type="text" id="tipoRes"  [(ngModel)]="inputRestricao" [ngModelOptions]="{standalone: true}" class="inputblack form-control " >
+              </div>
+              <div class="col-4 ml-0 p-0">
+                <button type="button" (click)="addRestr()" class="btn  btnColor btn-outline-info">Adicionar</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-9"></div>
+      </div>
+      <div class="row mt-3 mb-5" >
+  
+  
+  
+        <div class="col-3">
+          <table class="table table-bordered table-hover "  >
+         
+              <tr>
+                <th style="width: 8% !important; padding-left:0%; margin-left: 0%;"> </th>
+                <th style="width: 82%">Tipo Restrição</th>
+                <th style="width: 10%" *ngIf="action != 'show'"></th>
+              </tr>
+              <tr *ngFor="let obj of mainForm.controls.tipoRestricao.value; let i = index">
+                <td></td>
+                <td>{{ obj }}</td>
+                <td align="right" *ngIf="action != 'show'"><a (click)="addRestr(i)"><img class="w-10" src="../../assets/times-solid.svg"></a></td>
+              </tr>
+        
+            
+            
+          </table>
+          <div class="alert alert-info" role="alert" *ngIf="!mainForm.controls.tipoRestricao.value.length">
+            Nenhum Grau de Restrição
+          </div>
+        </div>
+        
+        
+        <div class="col-9"></div>
+  
+  
+  
+  
+  
+      </div>
+      <hr class="mt-5" *ngIf="action == 'show'">
+      <div class="row mt-5" *ngIf="action == 'show'">
+        <div class="col-8">
+          <table class="table table-bordered" >
+         
+            <tr>
+           
+              <th style="width: 70%">Usuário Responsável</th>
+              <th style="width: 20%">Data</th>
+            </tr>
+            <tr >
+              <td>Guilherme Nimer</td>
+              <td>20/12/2016 08:54:34</td>
+              
+            </tr>
+      
+          
+          
+        </table>
+        </div>
+        <div class="col-4"></div>
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
+  <div class="hrBottom  text-right">
+    <div class="line"></div>
+    <div class="pt-3"></div>
+    <button type="button" class="btn btn-outline mr-5 col-1" routerLink="..">Voltar</button>
+    <button type="submit" class="btn btn-bg mr-5 col-1" *ngIf="action != 'show'" >Salvar</button>
+  </div> 
+  </form>
+  
+  

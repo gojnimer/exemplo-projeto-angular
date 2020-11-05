@@ -1,0 +1,97 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" [routerLink]="['new']">+ Novo</button>
+  </div>
+
+  <form [formGroup]="mainForm" (ngSubmit)="search()" class="m-1 mb-3 mt-3">
+    <div class="row">
+      <div class="col-2">
+        <label class="pinput" for="codR">Código da Regra:</label>
+        <input type="number" id="codR"  formControlName="codRegra" class="inputblack form-control">
+      </div>
+      <div class="col-2">
+        <label class="pinput" for="codS">Status:</label>
+        <select class="form-control inputblack"  formControlName="codStatus" id="codS"  >
+          <option value=""  selected>Nenhum</option>
+          <option *ngFor="let opt of options" [value]="opt.value">{{opt.item}}</option>
+          
+        </select>
+      </div>
+      <div class="col-2 p-25">
+        <button type="submit" class="btn  bgBtn w-35 mt-30">Pesquisar</button>
+      </div>
+      <div class="col-6"></div>
+    </div>
+  </form>
+
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" (click)="sortList()">Regra</th>
+          <th scope="col">Qtd. Dias Ocorrências</th>
+          <th scope="col">Qtd. Dias Cons. Interna</th>
+          <th scope="col">Score</th>
+          <th scope="col">Status</th>
+          <th scope="col">Data Ultima Ação</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col"  >Ações</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        
+        <tr *ngFor="let a of dadosRegra | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosRegra.length}; let i = index ">
+          <td><a [routerLink]="['/RestrictiveSerasa/show']" [queryParams]="{id: a.status}">{{a.codigo}}</a></td>
+          <td>{{a.quantidadeOcorrencia}}</td>
+          <td>{{a.quantidadediasConsInterna}}</td>
+          <td>{{a.score}}</td>
+          <td>{{a.status}}</td>
+          <td>{{a.datacadastro}}</td>
+          <td>{{a.usuarioresponsavel}}</td>
+          <td >
+              <img  [routerLink]="['/RestrictiveSerasa/edit']" [queryParams]="{id: a.status}" src="../../assets/pencil-alt-solid.svg">
+              <a data-toggle="modal" data-target="#deleteModal" data-whatever="teste" (click)="regra = [a.codigo,i]" href="#"><img  src="../../assets/times-solid.svg"></a>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <div *ngIf="showEmpty" class="alert alert-info" role="alert">
+      Não existem itens para mostrar nesta exibição.
+     </div>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header"     style="border-bottom: 1px solid #0abab5 !important;">
+        <h5 class="modal-title" id="exampleModalLongTitle"><h4 class=" pt-2 ml-4 text-secondary text-center">Exclusão Restritivo SERASA</h4></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-5">
+        <h5 style="color:black; font-weight:400;">Você tem certeza que deseja excluir a <b>Regra {{regra[0]}}</b>?</h5>
+      </div>
+      <div class="modal-footer" style="border-top:none !important;">
+        
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-outline-info">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-light" (click)="deletarItem(regra[1])">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

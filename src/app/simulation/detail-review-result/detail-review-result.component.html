@@ -1,0 +1,121 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+  </div>
+</div>
+
+<form [formGroup]="formPessoa" class="m-1 mb-3 mt-3">
+
+  <div class="m-3">
+
+    <div class="row">
+
+      <div class="col-3">
+        <label class="form-check-label tp-person">CPF/CNPJ:</label>
+        <input formControlName="documento" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Proposta:</label>
+        <input formControlName="proposta" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Motivo Recusa:</label>
+        <input formControlName="motivoRecusa" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Resultado da Análise:</label>
+        <input formControlName="resultadoAnalise" type="text" class="form-control" readonly="true">
+      </div>
+
+    </div>
+
+  </div>
+  <div class="m-3">
+
+    <div class="row">
+
+      <div class="col-3">
+        <label class="form-check-label tp-person">Data e Hora de Análise:</label>
+        <input formControlName="dataAnalise" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Modelo Analisado:</label>
+        <input formControlName="modeloAnalisado" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Pré-Aprovado:</label>
+        <input formControlName="preAprovado" type="text" class="form-control" readonly="true">
+      </div>
+      <div class="col-3">
+        <label class="form-check-label tp-person">Fluxo Interrompido:</label>
+        <input formControlName="fluxoInterrompido" type="text" class="form-control" readonly="true">
+      </div>
+
+    </div>
+
+  </div>
+  <div class="m-3">
+
+    <div class="row">
+
+      <div class="col-3">
+        <label class="form-check-label tp-person">Valor Aprovado:</label>
+        <input formControlName="valorAprovado" type="text" class="form-control" readonly="true">
+      </div>
+
+    </div>
+
+  </div>
+  <div class="m-3">
+  </div>
+
+</form>
+
+<div class="p-2 pb-0">
+  <table class="table pt-2 mt-3 table-hover">
+    <thead>
+      <tr>
+        <th scope="col-3">Tipo de Pessoa</th>
+        <th scope="col-3">CPF/CNPJ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let a of dadosPessoa | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosPessoa.lenght}"
+        data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+      >
+        <td>{{a.tipo}}</td>
+        <td>{{a.documento}}</td>
+      </tr>      
+    </tbody>
+  </table>
+  <table class="table collapse" id="collapseExample">
+    <thead>
+      <tr>
+        <th class="th-secundaria pl-5" scope="col-1">Ordem de Análise</th>
+        <th class="th-secundaria" scope="col-3">Processo</th>
+        <th class="th-secundaria" scope="col-3">Resultado</th>
+        <th class="th-secundaria" scope="col-3">Contingência</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let a of dadosAnalise | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosAnalise.lenght}">
+        <div class="pl-5"><td>{{a.ordem}}</td></div>
+        <td><a data-toggle="modal" data-target="#exampleModal" href="#">{{a.processo}}</a></td>
+        <td>{{a.resultado}}</td>
+        <td>{{a.contingencia}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  
+
+<div class="hrBottom p-3 px-0 text-right">
+  <div class="line"></div>
+  <button type="button" class="btn btn-outline pb-1 mr-5 col-1" routerLink="..">Voltar</button>
+</div>
+
+<detail-process-modal></detail-process-modal>

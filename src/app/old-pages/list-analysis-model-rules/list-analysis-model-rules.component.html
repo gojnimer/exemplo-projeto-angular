@@ -1,0 +1,75 @@
+
+<div class="p-3">
+  
+  <div class="p-1 titleLine d-inline-flex">
+    <img src="../../assets/back.svg" class="back" routerLink="/listAssociatedProcess">
+    <h4 style="padding-top: 3px;" class="ml-4 text-secondary text-center">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" routerLink="/inclusionAnalysisModelRules" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <div class="pt-20">
+    <label><b>Modelo:</b> {{modelo}}</label>
+  </div>
+  <div class="pt-20">
+    <label><b>Processo:</b> {{processo}}</label>
+  </div>
+
+  <form class="m-1 mb-3 mt-3">
+    <div class="row">
+      <div class="col">
+        <label><b>Regra:</b></label>
+        <select class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label><b>Status:</b></label>
+        <select class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col" style="padding-top: 26px;">
+        <button type="button" class="btn bgBtn w-35 mt-30">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Regra</th>
+          <th scope="col" style="width: 25%;">Descrição</th>
+          <th scope="col">Ação</th>
+          <th scope="col">Interromper</th>
+          <th scope="col" style="width: 25%;">Mensagem</th>
+          <th scope="col">Motivo Recusa</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosRegra | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosRegra.lenght}">
+          <td>{{a.regra}}</td>
+          <td [title]="a.descricao">{{a.descricao}}</td>
+          <td>{{a.acao}}</td>
+          <td>{{a.interromper}}</td>
+          <td [title]="a.mensagem">{{a.mensagem}}</td>
+          <td>{{a.motivorecusa}}</td>
+          <td>{{a.datacadastro}}</td>
+          <td>{{a.usuarioresponsavel}}</td>
+          <td class="d-flex d-inline-flex w-100">
+              <img class="w-10" src="../../assets/pencil-alt-solid.svg">
+              <img class="w-10" src="../../assets/times-solid.svg">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>

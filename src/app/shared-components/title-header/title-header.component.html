@@ -1,0 +1,14 @@
+<div class="p-1 titleLine d-inline-flex d-flex flex-row " [ngSwitch]="isRouting">
+
+  <img  src="../../assets/back.svg" class="back " [routerLink]="backArrowRoutingPath">
+
+  <h4 class="pt-2 ml-2 text-secondary text-center">{{ titulo }}</h4>
+
+  <button *ngSwitchCase="false && newBtn" type="button" class="mr-4 btn bgBtn justify-content-end d-flex" (click)="this.newBtnEvent.emit($event);">{{newBtnTitulo}}</button>
+
+  <button *ngSwitchCase="true && newBtn"  type="button" class="mr-4 btn d-flex bgBtn justify-content-end " [routerLink]="RoutingPath"  >{{newBtnTitulo}}</button>
+
+</div>
+
+
+

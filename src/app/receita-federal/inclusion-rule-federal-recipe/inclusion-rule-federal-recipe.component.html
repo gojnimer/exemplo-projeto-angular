@@ -1,0 +1,47 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center">{{ title }}</h4>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="m-3">
+    <label class="form-check-label tp-person" for="exampleRadios1">
+      Tipo de Pessoa
+    </label>
+    <div class="row pl-5">
+      <div class="form-check mr-2">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+        <label class="form-check-label blackText" for="exampleRadios1">
+          Física
+        </label>
+      </div>
+      <div class="form-check mr-2">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+        <label class="form-check-label blackText" for="exampleRadios1">
+          Juridica
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-3">
+    <label class="form-check-label tp-person" for="exampleRadios1">
+      Situação Receita Federal
+    </label>
+    <div class="row p-1">
+      <div class="form-check col-2">
+        <select class="browser-default custom-select">
+          <option>Selecione...</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="hrBottom p-3 text-right">
+  <div class="line"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="..">Voltar</button>
+  <button type="button" class="btn btn-bg mr-5 col-1">Incluir</button>
+</div>

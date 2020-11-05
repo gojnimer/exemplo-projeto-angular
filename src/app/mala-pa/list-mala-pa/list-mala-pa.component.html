@@ -1,0 +1,98 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" routerLink="new">+ Novo</button>
+  </div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="search()" class="m-1 mb-3 mt-3">
+    <div class="row mt-5">
+      <div class="col-2">
+        <label class="ptitle" >Código da Mala:</label>
+        <input type="number"  formControlName="codRegra" class="inputblack form-control">
+      </div>
+      <div class="col-2">
+        <label class="ptitle">Status:</label>
+        <select class="browser-default custom-select" formControlName="status">
+          <option value="" >Todos</option>
+        </select>
+      </div>
+      <div class=" col-2">
+        <label  class="ptitle">Data Início Vigência:</label>
+        <input type="date" class="form-control" formControlName="dtInicioVigencia" >
+    </div>
+      <div class="col-2 p-25">
+        <button type="submit" class="btn  bgBtn  mt-30">Pesquisar</button>
+      </div>
+      <div class="col-6"></div>
+    </div>
+  </form>
+
+  <div class="mt-2" >
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"  style="width: 5%;">Código</th>
+          <th scope="col">Descrição</th>
+          <th scope="col" >Prioridade</th>
+          <th scope="col" >Data Início<br>Vigência</th>
+          <th scope="col" >Data Fim<br>Vigência</th>
+          <th scope="col" >Tipo de Mala</th>
+          <th scope="col" >Manter<br>Outras Malas</th>
+          <th scope="col" >Status</th>
+          <th scope="col" >Data Ultima Ação</th>
+          <th scope="col" >Usuário Responsável</th>
+          <th scope="col" >Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of paramsMala | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: paramsMala.length}; let i = index ">
+          <td ><a [routerLink]="['show']" [queryParams]="{id: a.codigo}">{{a.codigo}}</a></td>
+          <td>{{a.desc}}</td>
+          <td>{{a.prioridade}}</td>
+          <td>{{a.dataInicioVigencia}}</td>
+          <td>{{a.dataFimVigencia}}</td>
+          <td>{{a.tipoMala}}</td>
+          <td>{{a.manterOutrasMalas}}</td>
+          <td>{{a.status}}</td>
+          <td>{{a.dataUltimaAcao}}</td>
+          <td>{{a.usuarioResponsavel}}</td>
+          <td>
+              <a><img  [routerLink]="['edit']" [queryParams]="{id: a.codigo}" src="../../assets/pencil-alt-solid.svg"></a>
+              <a data-toggle="modal" data-target="#deleteModal" data-whatever="teste" (click)="param = [a.desc,i]"><img   src="../../assets/times-solid.svg"></a>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <div *ngIf="paramsMala.length == 0" class="alert alert-info" role="alert">
+      Não existem itens para mostrar nesta exibição.
+     </div>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header"     style="border-bottom: 1px solid #0abab5 !important;">
+        <h5 class="modal-title" id="exampleModalCenterTitle"><h4 class=" pt-2 ml-4 text-secondary text-center">Exclusão Pré-Aprovação</h4></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-5">
+        <h5 style="color:black; font-weight:400;">Você tem certeza que deseja excluir a <b>Pré-Aprovação {{param[0]}}</b>?</h5>
+      </div>
+      <div class="modal-footer" style="border-top:none !important;">
+        
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-outline-info">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-light" (click)="deletarItem(param[1])">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

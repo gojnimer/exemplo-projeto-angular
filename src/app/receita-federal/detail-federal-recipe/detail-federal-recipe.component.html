@@ -1,0 +1,73 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+  </div>
+</div>
+
+<form class="m-1 mb-3 mt-3">
+
+  <div class="m-3">
+
+    <div class="row">
+
+      <div class="col-3">
+        <label class="form-check-label tp-person">Código da Regra:</label>
+        <input type="text" class="form-control" readonly="true" value="10">
+      </div>
+      <div class="col-5">
+        <label class="form-check-label tp-person">Descrição da Regra:</label>
+        <input type="text" class="form-control" readonly="true" value="Receita Federal Código 01">
+      </div>
+
+    </div>
+
+  </div>
+  <div class="m-3">
+
+    <div class="row">
+        
+        <div class="col-3">
+          <label class="form-check-label tp-person">Cód. Situação Receita Federal:</label>
+          <input type="text" class="form-control" readonly="true" value="1">
+        </div>
+        <div class="col-5">
+          <label class="form-check-label tp-person">Descrição Situação Receita Federal:</label>
+          <input type="text" class="form-control" readonly="true" value="Suspensa/Cancelada">
+        </div>
+
+      </div>
+
+    </div>
+
+  <div class="m-3">
+  </div>
+  <div class="m-3">
+  </div>
+  <div class="m-3">
+  </div>
+  
+</form>
+
+<div class="p-20">
+    <table class="table" style="width: 60%;">
+        <thead>
+        <tr>
+            <th scope="col-2" style="width: 75%;">Usuário Responsável</th>
+            <th scope="col-3" style="width: 25%;">Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let a of dadosUsuario | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosUsuario.lenght}">
+            <td>{{a.usuarioresponsavel}}</td>
+            <td>{{a.data}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="hrBottom p-3 text-right">
+  <div class="line"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/listFederalRecipe">Voltar</button>
+</div>
+ 

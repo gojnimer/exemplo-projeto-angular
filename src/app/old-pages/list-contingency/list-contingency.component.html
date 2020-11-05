@@ -1,0 +1,59 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" routerLink="/inclusionContingencyModel" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <form class="m-1 mb-3 mt-3">
+    <div class="row">
+        <div class="col">
+            <label class="labelBold">Modelo:</label>&nbsp;
+            <label>3 - Modelo de Análise</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="labelBold">Processo:</label>&nbsp;
+            <label>1 - Teste</label>
+        </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Contingência</th>
+          <th scope="col" style="width: 10%;">Ação</th>
+          <th scope="col">Interromper</th>
+          <th scope="col">Mensagem</th>
+          <th scope="col">Motivo Recusa</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosContingencia | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosContingencia.lenght}">
+          <td><a routerLink="/detailContingency">{{a.contingencia}}</a></td>
+          <td>{{a.acao}}</td>
+          <td>{{a.interromper}}</td>
+          <td>{{a.mensagem}}</td>
+          <td>{{a.motivorecusa}}</td>
+          <td>{{a.datacadastro}}</td>
+          <td>{{a.usuarioresponsavel}}</td>
+          <td class="d-flex d-inline-flex w-100">
+            <img class="w-10" routerLink="/inclusionContingencyModel" src="../../assets/pencil-alt-solid.svg">
+            <img class="w-10" src="../../assets/times-solid.svg">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>

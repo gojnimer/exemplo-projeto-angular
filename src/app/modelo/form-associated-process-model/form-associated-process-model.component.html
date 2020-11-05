@@ -1,0 +1,101 @@
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+  <div class="p-3">
+    <div class="p-1 titleLine justify-content-between d-inline-flex">
+      <h4 class=" pt-2 ml-4 text-secondary text-center">{{ action == 'edit' ? "Editar" : action == 'new' ? "Incluir" : "Consulta" }} Processos Associados</h4>
+    </div>
+  
+    
+      <div class="row mt-5">
+        
+        <div class="col-3">
+          <label  class="ptitle">Modelo:</label>
+          <input type="text" formControlName="codModelo" class="inputblack form-control form-control-lg" >
+        </div>
+   
+       
+          <div class="col-3" *ngIf="action == 'show'">
+            <label  class="ptitle">Descrição Processo:</label>
+            <select  formControlName="descProcesso" class="inputblack form-control form-control-lg" >
+              <option value="" selected>Selecione</option>
+              <option value="Modelo ABC">Modelo ABC</option>
+              <option value="Modelo ABC SHOW">Modelo ABC</option>
+            </select>
+          </div>
+          <div class="col-3"  *ngIf="action == 'show'">
+            <label  class="ptitle">Ordem de Execução:</label>
+            <select  formControlName="ordemExec" class="inputblack form-control form-control-lg" >
+              <option value="" selected>Selecione</option>
+              <option value="1" selected>1 - Primeiro</option>
+              <option value="2" selected>Show Teste</option>
+            </select>
+          </div>
+        
+        <div class="col-3" *ngIf="action == 'show'"></div>
+        <div class="col-9" *ngIf="action != 'show'"></div>
+      
+    </div>
+    <div class="row mt-5" *ngIf="action != 'show'">
+      <div class="col-3">
+        <label  class="ptitle">Descrição Processo:</label>
+        <select  formControlName="descProcesso" class="inputblack form-control form-control-lg" >
+          <option value="" selected>Selecione</option>
+          <option value="Modelo ABC">Modelo ABC</option>
+          <option value="Modelo ABC SHOW">Modelo ABC</option>
+        </select>
+      </div>
+      <div class="col-3">
+        <label  class="ptitle">Ordem de Execução:</label>
+        <select  formControlName="ordemExec" class="inputblack form-control form-control-lg" >
+          <option value="" selected>Selecione</option>
+          <option value="1" selected>1 - Primeiro</option>
+          <option value="2" selected>Show Teste</option>
+        </select>
+      </div>
+      <div class="col-6"></div>
+    </div>
+    
+  
+  
+    <div *ngIf="action == 'show'">
+      <hr class="mt-5 mb-5">
+      <div class="row">
+        <div class="col-7">
+          <table class="table table-bordered" >
+         
+            <tr>
+           
+              <th style="width: 70%">Usuário Responsável</th>
+              <th style="width: 20%">Data</th>
+            </tr>
+            <tr >
+              <td>Guilherme Nimer</td>
+              <td>20/12/2016 08:54:34</td>
+              
+            </tr>
+      
+          
+          
+        </table>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+   
+  
+  
+  </div>
+  
+  <div class="hrBottom  text-right mb-3">
+    <div class="line"></div>
+    <div class="pt-3"></div>
+    <button type="button" class="btn btn-outline mr-5 col-1" routerLink="..">Voltar</button>
+    <button type="submit" class="btn btn-bg mr-5 col-1" *ngIf="action != 'show'" >Salvar</button>
+  </div> 
+  </form>
+  
+  
+  
+  
+  
+  
+  

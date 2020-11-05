@@ -1,0 +1,160 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine  d-inline-flex">
+    <img src="../../assets/back.svg" class="back header" routerLink="/Modelos">
+    <h4 class="pt-2 ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+    <button type="button"  class="ml-5 btn float-right bgBtn" style="margin-left:auto !important;" [routerLink]="['new']" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <form [formGroup]="associatedProcessForm" class="m-1 mb-3 mt-3" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col">
+            <label >Modelo:</label>
+            <input formControlName = "idModeloAnalise" type="text" class="form-control" style="width:10%" value="2 - Teste" readonly="true">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <label >Descrição Processo:</label>
+        <select formControlName="dsProcesso" class="browser-default custom-select">
+          <option value="" selected>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label>Processo:</label>
+        <select formControlName = "idProcesso" class="browser-default custom-select">
+          <option value="" selected>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label>Ordem Execução:</label>
+        <select  formControlName="ordemProcesso" class="browser-default custom-select">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="col p-25">
+        <button type="submit" class="btn bgBtn  mt-30">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Descrição</th>
+          <th scope="col">Processo</th>
+          <th scope="col">Ordem Execução</th>
+          <th scope="col">Data Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col" >Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosProcessos | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosProcessos.lenght}">
+          <td><a [routerLink]="['show']" [queryParams]="{id: a.processo}">{{a.descricao}}</a></td>
+          <td>{{a.processo}}</td>
+          <td>{{a.ordemexecucao}}</td>
+          <td>{{a.datacadastro}}</td>
+          <td>{{a.usuarioresponsavel}}</td>
+          <td >
+              <img  src="../../assets/link-solid.svg"  tooltip="Associar Regra" [routerLink]="['Rules',a.processo]">
+              <img  src="../../assets/object-group-solid.svg" tooltip="Associar Contigência" [routerLink]="['Contigency',a.processo]">
+              <img [routerLink]="['edit']" [queryParams]="{id: a.processo}"  src="../../assets/pencil-alt-solid.svg">
+              <img  data-toggle="modal" data-target="#AddEditModal"   (click)="deletarItem()" src="../../assets/times-solid.svg">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Modal ADD/EDIT-->
+<div class="modal fade" id="AddEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content rounded-10">
+      <form [formGroup]="modalForm" (ngSubmit)="submitForm()">
+        <div class="modal-header"     style="border-bottom: 1px solid #0abab5 !important;">
+          <h5 class="modal-title" id="exampleModalLongTitle"><h4 class=" pt-2  text-secondary text-center">Exclusão Processos Associados</h4></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid p-1">
+            <div >
+              
+                <div class="row pb-5">
+                  <div class="col-4">
+                    <label class="pinput" style="font-weight: bold;" for="motR">Modelo</label>
+                    <input type="text" id="motR" disabled  formControlName="codModelo" class="inputblack  form-control">
+                  </div>
+                  <div class="col-8"></div>
+                </div>
+                <div class="row pb-5"  >
+                  <div class="col-4">
+                    <label class="pinput" style="font-weight: bold;">Descrição Processo:</label>
+                    <select  formControlName="descProcesso"  class="inputblack  form-control">
+                      <option value="" selected>Teste</option>
+                     
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <label class="pinput" style="font-weight: bold;" >Processos:</label>
+                    <select  formControlName="processos"  class="inputblack  form-control">
+                      <option value="" selected>12</option>
+                      
+                    </select>
+                  </div>
+                  <div class="col-4">
+                    <label class="pinput" style="font-weight: bold;" >Ordem de Execução:</label>
+                    <select  formControlName="ordemExec"  class="inputblack  form-control">
+                      <option value="" selected>1</option>
+                     
+                    </select>
+                  </div>
+                 
+                </div>
+                <div class="row pb-5" >
+                  <div class="col-4">
+                    <label class="pinput" style="font-weight: bold;">Usuário:</label>
+                    <select  formControlName="usuario"  class="inputblack  form-control">
+                      <option value="" selected>12</option>
+                      
+                    </select>
+                  </div>
+                  <div class="col-4"></div>
+                  <div class="col-4"></div>
+                </div>
+              
+            </div>
+          </div>
+          
+
+
+        </div>
+        <div class="modal-footer" style="border-top:none !important;">
+          
+          <button type="button" id="close" data-dismiss="modal" class="btn btn-lg btn-outline-info">Cancelar</button>
+          <button type="submit"  class="btn btn-lg btn-light save" >Salvar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>

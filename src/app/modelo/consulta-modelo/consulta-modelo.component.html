@@ -1,0 +1,109 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ title }}</h4>
+   
+  </div>
+
+
+  <div class="m-1  pt-5">
+    <div class="row ">
+      <div class="col-2">
+        <label class="ptitle" for="codR">Modelo:</label>
+        <input type="text" id="codR" disabled value="Teste" class="inputblack  form-control">
+      </div>
+      <div class="col-2">
+        <label class="ptitle" for="codR">Status:</label>
+        <select type="text" id="codR"    class="inputblack  form-control">
+          <option value="">Todos</option>
+        </select>
+      </div>
+    
+      <div class="col-8"></div>
+    </div>
+    
+  
+    
+  <div>
+    <label for="tableO" class="mt-5 ptitle">Regras:</label>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Regra</th>
+          <th scope="col">Ação</th>
+          <th scope="col">Interromper</th>
+          <th scope="col">Mensagem</th>
+          <th scope="col">Motivo Recusa</th>
+          <th scope="col">Usuário</th>
+          <th scope="col">Hora Manutenção</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosRegras | paginate: { itemsPerPage: contador, currentPage: pag, id: 'first', totalItems: dadosRegras.lenght}">
+          
+          <td>{{a.regra}}</td>
+          <td>{{a.acao}}</td>
+          <td>{{a.interromper}}</td>
+          <td>{{a.mensagem}}</td>
+          <td>{{a.motivoRecusa}}</td>
+          <td>{{a.usuario}}</td>
+          <td>{{a.horaManutencao}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="dadosRegras.length == 0" class="alert alert-info" role="alert">
+      Não existem itens para mostrar nesta exibição.
+     </div>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" id="first" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+  
+    <hr class="mt-5 mb-5">
+    <div>
+      <label for="tableO" class="mt-5 ptitle">Contigências:</label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Contigência</th>
+            <th scope="col">Ação</th>
+            <th scope="col">Interromper</th>
+            <th scope="col">Motivo Recusa</th>
+            <th scope="col">Mensagem</th>
+            
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of dadosContigencia | paginate: { itemsPerPage: contador2, currentPage: pag2, id: 'second', totalItems: dadosContigencia.lenght}">
+            
+            <td>{{a.contigencia}}</td>
+            <td>{{a.acao}}</td>
+            <td>{{a.interromper}}</td>
+            <td>{{a.motivoRecusa}}</td>
+            <td>{{a.mensagem}}</td>
+           
+            
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="dadosContigencia.length == 0" class="alert alert-info" role="alert">
+        Não existem itens para mostrar nesta exibição.
+       </div>
+    </div>
+    <!--inclindo o controle de paginação.-->
+    <div class="text-right">
+      <pagination-controls (pageChange)="pageChanged($event,true)" id="second" previousLabel="Anterior"
+      nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+    </div>
+  </div>
+
+</div>
+
+<div class="hrBottom  text-right mb-3">
+  <div class="line"></div>
+  <div class="pt-3"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/Modelos">Voltar</button>
+</div> 

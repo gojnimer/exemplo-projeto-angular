@@ -1,0 +1,91 @@
+
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="pt-2 ml-2 text-secondary text-center">{{ title }}</h4>
+  </div>
+
+  <form [formGroup]="mainForm" class="m-1 mb-3 mt-3" (ngSubmit)="submit()">
+    <div class="row">
+
+      <div class="col-3">
+        <label >CPF:</label>
+        <input type="number" class="form-control">
+      </div>
+      <div class="col-3">
+        <label >Número Proposta:</label>
+        <input type="number" class="form-control">
+      </div>
+      <div class="col-3">
+        <label>Situação Proposta:</label>
+        <select  class="browser-default custom-select">
+          <option value="">Todas</option>
+          <option value="0">Em análise</option>
+          <option value="1">Cancelada</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-3">
+            <label >Data Inicial:</label>
+            <input type="date" class="form-control" formControlName="dtInicial">
+          </div>
+
+        <div class="form-group col-3">
+            <label >Data Final:</label>
+            <input type="date" class="form-control" formControlName="dtFim">
+        </div>
+        <div class="col-3 pt-4 mt-2">
+            <button type="submit" class="btn bgBtn w-35 mt-30">Pesquisar</button>
+        </div>
+        <div class="col-3 pt-4 text-right mt-2">
+          <button type="button" class="btn bgBtn w-35 mt-30">Copiar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table"> 
+      <thead>
+        <tr>
+          <th>
+            <div class="custom-control custom-checkbox" >
+              <input type="checkbox" class="custom-control-input" id="customCheck0" (click)="checkAll()">
+              <label class="custom-control-label" for="customCheck0"></label>
+            </div>
+          </th>
+          <th scope="col">CPF Cliente</th>
+          <th scope="col">Modelo Análise</th>
+          <th scope="col">Descrição Modelo</th>
+          <th scope="col">Número da Proposta</th>
+          <th scope="col">Data de Cadastro</th>
+          <th scope="col">Status Análise</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor="let a of dadosPropostas | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosPropostas.lenght}">
+          <td>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck{{a.id}}" [checked]="a.isChecked">
+              <label class="custom-control-label" for="customCheck{{a.id}}"></label>
+            </div>
+          </td>
+          <td><a [routerLink]="[a.cpfcliente]">{{a.cpfcliente}}</a></td>
+          <td>{{a.modelo}}</td>
+          <td>{{a.descmodelo}}</td>
+          <td>{{a.numeroproposta}}</td>
+          <td>{{a.dataCadastro}}</td>
+          <td>{{a.statusanalise}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>
+

@@ -1,0 +1,52 @@
+.titleLine {
+    padding: 5px;
+    text-align: left;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+    box-shadow: 0px 0px 5px 0px rgba(179,179,179,1);
+  }
+
+  h4 {
+    color: #0abab5!important;
+  }
+
+  .tp-person {
+      color: #595858;
+      font-weight: bold;
+  }
+
+  .blackText {
+      color: #6f586e;
+      font-weight: 400;
+  }
+
+  .hrBottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+
+.line {
+  height: 1px;
+  border: solid 1px;
+  margin: 5px;
+  color: #88dad8;
+}
+
+.btn-outline {
+  outline-color: #0abab5;
+  color: #0abab5;
+  border-color:  #0abab5;
+  height: 45px;
+}
+
+.btn-bg {
+  background: #0abab5;
+  color: #fff;
+  height: 45px;
+}

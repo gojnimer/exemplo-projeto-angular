@@ -1,0 +1,25 @@
+
+.bg-container {
+  padding: 15px;
+  background: #fff;
+  margin: auto;
+  border-radius: 25px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(166,166,166,1);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(166,166,166,1);
+  box-shadow: 10px 10px 5px 0px rgba(166,166,166,1);
+  max-width: 315px;
+}
+
+.border-color {
+  border-color: #0abab5;
+  color: #0abab5;
+}
+
+img {
+  max-width: 100px;
+}
+
+button{
+  background-color: #0abab5;
+  border-style: hidden;
+}

@@ -1,0 +1,60 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ title }}</h4>
+   
+  </div>
+
+
+  <div class="m-1  pt-5">
+    <div class="row ">
+      <div class="col-3">
+        <label class="ptitle">Código do Motivo:</label>
+        <input type="text"  disabled  [value]="motivoRecusa.codigoMotivo" class="inputblack  form-control">
+      </div>
+      <div class="col-4">
+        <label class="ptitle">Descrição do Motivo:</label>
+        <input type="text"  disabled  [value]="motivoRecusa.descMotivo" class="inputblack  form-control">
+      </div>
+    
+      <div class="col-5"></div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-3">
+        <label class="ptitle">Status:</label>
+        <input type="text"  disabled [value]="motivoRecusa.status"  class="inputblack  form-control">
+      </div>
+      
+    
+      <div class="col-9"></div>
+    </div>
+    <hr class="mt-5 mb-5">
+    <div class="row">
+      <div class="col-7">
+        <table class="table table-bordered" >
+       
+          <tr>
+         
+            <th style="width: 70%">Usuário Responsável</th>
+            <th style="width: 20%">Data</th>
+          </tr>
+          <tr >
+            <td>{{motivoRecusa.usuarioResponsavel}}</td>
+            <td>{{motivoRecusa.data}}</td>
+            
+          </tr>
+    
+        
+        
+      </table>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="hrBottom  text-right mb-3">
+  <div class="line"></div>
+  <div class="pt-3"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/MotivoRecusa">Voltar</button>
+</div> 

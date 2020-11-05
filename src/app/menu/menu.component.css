@@ -1,0 +1,39 @@
+
+.bg-menu {
+  background-color: #0abab5 !important;
+}
+
+.img-logo {
+  max-width: 55px;
+}
+
+.circle {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  text-align: center;
+  background: #fff;
+  color: #0abab5;
+  height: 40px;
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(120,115,120,1);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(120,115,120,1);
+  box-shadow: 5px 5px 5px 0px rgba(120,115,120,1);
+}
+
+p {
+  color: #fff;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  background: #70d6d3!important;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu a{
+      background: #70d6d3!important;
+      color: #fff;
+}
+
+.mx-width {
+  width: max-content;
+  opacity: 0.9;
+}

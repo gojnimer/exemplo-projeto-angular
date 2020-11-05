@@ -1,0 +1,215 @@
+
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ action == 'edit' ? "Editar" : action == 'new' ? "Incluir" : "Consulta"}} Restritivo SERASA</h4>
+  </div>
+
+
+    <div class="row mt-5">
+      
+        <div class="col-6">
+          <label for="NomeRegra" class="ptitle">Nome Regra:</label>
+          <input type="text" id="NomeRegra" formControlName="nomeRegra" class="inputblack form-control form-control-lg" >
+        </div>
+        
+        <div class="col-3">
+          <label for="qtdOcorrencia" class="ptitle">Qtd. Dias Ocorrências:</label>
+          <input type="text" id="qtdOcorrencia" formControlName="qtdOcorrencia" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-3">
+          <label for="qtdInterna" class="ptitle">Qtd. Dias Cons Interna:</label>
+          <input type="text" id="qtdInterna" formControlName="qtdInterna" class="inputblack form-control form-control-lg" >
+        </div>
+      
+    </div>
+    <div class="row mt-5">
+      
+        <div class="col-3">
+          <label for="score" class="ptitle">Score:</label>
+          <select class="form-control form-control-lg inputblack" formControlName="score"  id="score"  >
+            <option value=""  selected>Nenhum</option>
+        <!--     <option *ngFor="let opt of options" [value]="opt.value">{{opt.item}}</option> -->
+            
+          </select>
+          
+        </div>
+        
+        <div class="col-3" *ngIf="action != 'show'">
+         
+          <label for="indiModelo" class="ptitle">Indicador do Modelo:</label>
+          <select class="form-control form-control-lg inputblack" formControlName="indicadorModelo"  id="indiModelo"  >
+            <option value=""  selected>Nenhum</option>
+            <option *ngFor="let opt of options" [value]="opt.value">{{opt.item}}</option>
+            
+          </select>
+        
+        </div>
+        <div class="col-3">
+          <label for="modeloScore" class="ptitle">Modelo Score:</label>
+          <input type="text" id="modeloScore" formControlName="modeloScore" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-3" *ngIf="action == 'show'">
+          <label for="faixaInicial" class="ptitle">Faixa Inicial:</label>
+          <input type="text" id="faixaInicial" formControlName="faixaInicial" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-3" *ngIf="action == 'show'">
+          <label for="faixaFinal" class="ptitle">Faixa Final:</label>
+          <input type="text" id="faixaFinal" formControlName="faixaFinal" class="inputblack form-control form-control-lg" >
+        </div>
+        
+    </div>
+   
+    
+    <div class="row mt-5">
+        <div class="col-3" *ngIf="action != 'show'">
+          <label for="faixaInicial" class="ptitle">Faixa Inicial:</label>
+          <input type="text" id="faixaInicial" formControlName="faixaInicial" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-3" *ngIf="action != 'show'">
+          <label for="faixaFinal" class="ptitle">Faixa Final:</label>
+          <input type="text" id="faixaFinal" formControlName="faixaFinal" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-3">
+          <div *ngIf="action != 'new'" >
+            <label for="status" class="ptitle">Status:</label>
+            <select class="form-control form-control-lg inputblack" formControlName="status"  id="status"  >
+              <option value=""  selected>Situação OK</option>
+              <!-- <option *ngFor="let opt of options" [value]="opt.value">{{opt.item}}</option> -->
+              
+            </select>
+          </div>
+          
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3" *ngIf="action == 'show'"></div>
+        <div class="col-3" *ngIf="action == 'show'"></div>
+    </div>
+ 
+
+    <div class="row mt-5" *ngIf="action != 'show'">
+        <div class="col-4 pr-0">
+          <label for="grauRes" class="ptitle">Grau de Restrição</label>
+          <div class="row">
+            <div class="col-8">
+              <input type="text" id="grauRes" [(ngModel)]="inputGrauR" [ngModelOptions]="{standalone: true}" class="inputblack form-control form-control-lg" >
+            </div>
+            <div class="col-2 p-0">
+              <button type="button" (click)="addGrauR()" class="btn btn-lg btnColor btn-outline-info">Adicionar</button>
+            </div>
+            <div class="col-2 p-0"> </div>
+          </div> 
+        </div>
+        <div class="col-4 pr-0">
+          <label for="tipoRes" class="ptitle">Tipo de Restrição</label>
+          <div class="row">
+            <div class="col-8 ">
+              <input type="text" id="tipoRes"  [(ngModel)]="inputTipoR" [ngModelOptions]="{standalone: true}" class="inputblack form-control form-control-lg" >
+            </div>
+            <div class="col-4 ml-0 p-0">
+              <button type="button" (click)="addTipoR()" class="btn btn-lg btnColor btn-outline-info">Adicionar</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row mt-3 mb-5" *ngIf="action != 'show'" >
+
+
+
+      <div class="col-4">
+        <table class="table table-bordered table-hover "  >
+       
+            <tr>
+              <th style="width: 8% !important; padding-left:0%; margin-left: 0%;"> </th>
+              <th style="width: 82%">Grau Restrição</th>
+              <th style="width: 10%"></th>
+            </tr>
+            <tr *ngFor="let obj of mainForm.controls.grauRestricao.value; let i = index">
+              <td></td>
+              <td>{{ obj }}</td>
+              <td align="right"><a (click)="addGrauR(i)"><img class="w-10" src="../../assets/times-solid.svg"></a></td>
+            </tr>
+      
+          
+          
+        </table>
+        <div class="alert alert-info" role="alert" *ngIf="!mainForm.controls.grauRestricao.value.length">
+          Nenhum Grau de Restrição
+        </div>
+      </div>
+      
+      <div class="col-4 ">
+        <table class="table table-bordered"  >
+       
+          <tr>
+            <th style="width: 8% !important; padding-left:0%; margin-left: 0%;"> </th>
+            <th style="width: 82%">Tipo Restrição</th>
+            <th style="width: 10%"></th>
+          </tr>
+          <tr *ngFor="let obj of mainForm.controls.tipoRestricao.value;  let i = index">
+            <td></td>
+            <td>{{ obj }}</td>
+            <td align="right" ><a (click)="addTipoR(i)"><img class="w-10" src="../../assets/times-solid.svg"></a></td>
+          </tr>
+    
+        
+        
+        </table>
+        <div class="alert alert-info" role="alert" *ngIf="!mainForm.controls.tipoRestricao.value.length">
+          Nenhum Tipo de Restrição
+        </div>
+      </div>
+      <div class="col-4"></div>
+
+
+
+
+
+    </div>
+    <hr class="mt-5" *ngIf="action == 'show'">
+    <div class="row mt-5" *ngIf="action == 'show'">
+      <div class="col-8">
+        <table class="table table-bordered" >
+       
+          <tr>
+         
+            <th style="width: 70%">Usuário Responsável</th>
+            <th style="width: 20%">Data</th>
+          </tr>
+          <tr >
+            <td>Guilherme Nimer</td>
+            <td>20/12/2016 08:54:34</td>
+            
+          </tr>
+    
+        
+        
+      </table>
+      </div>
+      <div class="col-4"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="hrBottom  text-right">
+  <div class="line"></div>
+  <div class="pt-3"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/RestrictiveSerasa">Voltar</button>
+  <button type="submit" class="btn btn-bg mr-5 col-1" *ngIf="action != 'show'" >Salvar</button>
+</div> 
+</form>
+

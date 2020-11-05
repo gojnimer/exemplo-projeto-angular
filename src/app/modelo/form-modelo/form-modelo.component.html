@@ -1,0 +1,44 @@
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+  <div class="p-3">
+    <div class="p-1 titleLine justify-content-between d-inline-flex">
+      <h4 class=" pt-2 ml-4 text-secondary text-center">{{ action == 'edit' ? "Editar" : "Incluir" }} Modelos de Análise</h4>
+    </div>
+  
+    
+      <div class="row mt-5">
+        
+        <div class="col-3">
+          <label for="tCodM" class="ptitle">Código do Modelo:</label>
+          <input type="text" id="tCodM" formControlName="codModelo" class="inputblack form-control form-control-lg" >
+        </div>
+  
+        <div class="col-3">
+          <label for="tDescM" class="ptitle">Descrição:</label>
+          <input type="text" id="tDescM" formControlName="descModelo" class="inputblack form-control form-control-lg" >
+        </div>
+        <div class="col-6"></div>
+      
+    </div>
+    
+  
+  
+   
+   
+  
+  
+  </div>
+  
+  <div class="hrBottom  text-right mb-3">
+    <div class="line"></div>
+    <div class="pt-3"></div>
+    <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/Modelos">Voltar</button>
+    <button type="submit" class="btn btn-bg mr-5 col-1" >Salvar</button>
+  </div> 
+  </form>
+  
+  
+  
+  
+  
+  
+  

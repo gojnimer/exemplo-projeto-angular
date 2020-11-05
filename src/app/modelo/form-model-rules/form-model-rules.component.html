@@ -1,0 +1,107 @@
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 style="margin-top: auto;" class="ml-4 p-1 text-secondary text-center">{{ action == 'edit' ? "Editar" : action == 'new' ? "Incluir" : "Consulta"}} Regras Modelo de Análise</h4>
+  </div>
+</div>
+
+<div class="pl-4 pt-2 ml-2 pb-4">
+  <div>
+    <label><b>Modelo:</b> {{modelo}} - Modelo de Análise</label>
+  </div>
+  <div>
+    <label><b>Processo:</b> {{processo}} - Teste</label>
+  </div>
+</div>
+
+
+<div class="container-fluid m-2">
+  <div class="m-1 mb-3 mt-3">
+    <div class="row">
+
+      <div class="col-3">
+        <label><b>Regra:</b></label>
+        <select formControlName="codRegra" class="browser-default custom-select">
+          <option value="">Selecione</option>
+          <option value="1">1 - Teste</option>
+          <option value="2">2 - Teste Show</option>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <label><b>Ação:</b></label>
+        <select formControlName="acao" class="browser-default custom-select">
+          <option value="">Selecione</option>
+          <option value="1">1 - Teste</option>
+          <option value="2">2 - Teste Show</option>
+        </select>
+      </div>
+      
+      <div class="col-3">
+        <label><b>Interromper:</b></label>
+        <select formControlName="interromper" class="browser-default custom-select">
+          <option value="">Todos</option>
+          <option value="1">1 - Teste</option>
+          <option value="2">2 - Teste Show</option>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <label><b>Mensagem:</b></label>
+        <select formControlName="mensagem" class="browser-default custom-select">
+          <option value="">Todos</option>
+          <option value="1">1 - Teste</option>
+          <option value="2">2 - Teste Show</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-3">
+        <label><b>Motivo Recusa:</b></label>
+        <select formControlName="motivoRecusa" class="browser-default custom-select">
+          <option value="">Todos</option>
+          <option value="1">1 - Teste</option>
+          <option value="2">2 - Teste Show</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div *ngIf="action == 'show'">
+    <hr class="mt-5 mb-5">
+    <div class="row">
+      <div class="col-7">
+        <table class="table table-bordered" >
+       
+          <tr>
+         
+            <th style="width: 70%">Usuário Responsável</th>
+            <th style="width: 20%">Data</th>
+          </tr>
+          <tr >
+            <td>Guilherme Nimer</td>
+            <td>20/12/2016 08:54:34</td>
+            
+          </tr>
+    
+        
+        
+      </table>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="hrBottom p-3 text-right">
+    <div class="line"></div>
+    <button type="button" class="btn btn-outline mr-5 col-1" routerLink="..">Voltar</button>
+    <button type="submit" class="btn btn-bg mr-5 col-1">Salvar</button>
+  </div>
+</form>

@@ -1,0 +1,7 @@
+<app-menu *ngIf="canShow"></app-menu>
+
+<div class="route-container" [@routeAnimation]="getDepth(myOutlet)">
+    <router-outlet #myOutlet="outlet"></router-outlet>
+</div>
+
+<loading-spinner *ngIf="isLoading" ></loading-spinner>

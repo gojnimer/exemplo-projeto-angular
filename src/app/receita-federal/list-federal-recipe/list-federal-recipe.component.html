@@ -1,0 +1,89 @@
+  
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class="ml-4 text-secondary text-center" style="padding-top: 3px">{{ title }}</h4>
+    <button type="button" class="mr-4 btn bgBtn" [routerLink]="['new']" routerLinkActive="active">+ Novo</button>
+  </div>
+
+  <form class="m-1 mb-3 mt-3">
+    <div class="row">
+      <div class="col">
+        <label >Código da Regra:</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="col">
+        <label>Status:</label>
+        <select class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col">
+        <label>Tipo de Pessoa:</label>
+        <select class="browser-default custom-select">
+          <option>Todos</option>
+        </select>
+      </div>
+      <div class="col p-20">
+        <button type="button" class="btn bgBtn w-35 mt-30">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Código da Regra</th>
+          <th scope="col">Status</th>
+          <th scope="col">Situação Receita Federal</th>
+          <th scope="col">Data de Cadastro</th>
+          <th scope="col">Usuário Responsável</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of dadosReceita | paginate: { itemsPerPage: contador, currentPage: pag, totalItems: dadosReceita.length}">
+          <td><a [routerLink]="['show']" [queryParams]="{id: a.regra}">{{a.regra}}</a></td>
+          <td>{{a.regra}}</td>
+          <td>{{a.statusReceita}}</td>
+          <td>{{a.dataCadastro}}</td>
+          <td>{{a.usuario}}</td>
+          <td >
+              <img [routerLink]="['edit']" [queryParams]="{id: a.regra}" src="../../assets/pencil-alt-solid.svg">
+              <a  data-toggle="modal" data-target="#deleteModal"><img   src="../../assets/times-solid.svg"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--inclindo o controle de paginação.-->
+  <div class="text-right">
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Anterior"
+    nextLabel="Próximo" directionLinks="true" responsive="true"></pagination-controls>
+  </div>
+</div>
+
+
+
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header"     style="border-bottom: 1px solid #0abab5 !important;">
+        <h5 class="modal-title" id="exampleModalCenterTitle"><h4 class=" pt-2 ml-4 text-secondary text-center">Exclusão Receita Federal</h4></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-5">
+        <h5 style="color:black; font-weight:400;">Você tem certeza que deseja excluir a <b>Regra 10</b>?</h5>
+      </div>
+      <div class="modal-footer" style="border-top:none !important;">
+        
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-outline-info">Cancelar</button>
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-light" >Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

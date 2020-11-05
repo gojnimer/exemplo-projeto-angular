@@ -1,0 +1,63 @@
+<div class="p-3">
+  <div class="p-1 titleLine justify-content-between d-inline-flex">
+    <h4 class=" pt-2 ml-4 text-secondary text-center">{{ title }}</h4>
+  </div>
+  <div class="alert mt-3 alert-danger" *ngIf="simulationError" role="alert">
+    Selecione uma opção de Simulação
+  </div>
+  <div class="alert mt-3 alert-danger" *ngIf="cpfError" role="alert">
+    CPF invalido!
+  </div>
+  <div class="alert mt-3 alert-danger" *ngIf="modelError" role="alert">
+    Modelo invalido!
+  </div>
+</div>
+<form [formGroup]="mainForm" (ngSubmit)="submit()">
+  <div class="row p-2 pt-4 ">
+
+    <div class="col-2 pt-3 ">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10"><h5 class="pl-4 ptitle ">Realizar Simulação:</h5></div>
+        <div class="col-1"></div>
+      </div>
+      
+      <div class="row  pt-2 ">
+        <div class="col-3"></div>
+        <div class="col-3 ">
+          <input class="form-check-input"  type="radio" formControlName="simulation"   value="yes">
+          <label class="pinput form-check-label" for="y">Sim</label><br>
+        </div>
+        <div class="col-3">
+          <input class="form-check-input"  type="radio"  formControlName="simulation"  value="female" checked>
+          <label class="pinput form-check-label"  for="t">Não</label><br>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+
+    <div class="col-3 pt-2">
+      <div class="form-group form-control-lg">
+        <label for="CPF" class="ptitle">CPF:</label>
+        <input type="text" validation="true" formControlName="cpf"  mask="XXX.XXX.XXX-XX" class="form-control inputblack"  aria-describedby="cpf">
+      </div>
+    </div>
+    <div class="col-2 pt-2">
+      <div class="form-group form-control-lg">
+        <label for="exampleFormControlSelect1" class="ptitle">Modelo:</label>
+        <select class="form-control inputblack" formControlName="model" id="exampleFormControlSelect1"  >
+          <option value="" disabled selected>Selecione</option>
+          <option *ngFor="let opt of options">{{opt}}</option>
+          
+        </select>
+      </div>
+    </div>
+    <div class="col-5"></div>
+</div>
+<div class="hrBottom p-3 text-right">
+  <div class="line"></div>
+  <div class="pt-3"></div>
+  <button type="button" class="btn btn-outline mr-5 col-1" routerLink="/home  ">Voltar</button>
+  <button type="submit" class="btn btn-bg mr-5 col-1" >Salvar</button>
+</div> 
+</form>
